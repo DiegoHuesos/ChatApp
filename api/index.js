@@ -12,9 +12,9 @@ const conversationRoute = require("./routes/conversations");
 const messageRoute = require("./routes/messages");
 const router = express.Router();
 const path = require("path");
+const connectDB = require('./config/db')
 
-dotenv.config();
-
+/*
 mongoose.connect(
   process.env.MONGO_URL,
   { useNewUrlParser: true, useUnifiedTopology: true },
@@ -22,6 +22,9 @@ mongoose.connect(
     console.log("Connected to MongoDB");
   }
 );
+*/
+connectDB();
+
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 //middleware
@@ -54,5 +57,5 @@ app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);
 
 app.listen(8800, () => {
-  console.log("Backend server is running!");
+  console.log("Backend server is running! on port");
 });
