@@ -55,6 +55,28 @@ router.get("/", async (req, res) => {
   }
 });
 
+//get all users
+router.get("/all", async (req, res) => {
+  
+  try {
+
+    const users = await User.find();
+    let usersList = [];
+    
+    users.map( (user) => {
+      const { _id } = user;
+      usersList.push({ _id });
+    });
+
+    res.status(200).json(usersList);
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+//Probablemente sobre para los intereses de este proyecto
 //get friends
 router.get("/friends/:userId", async (req, res) => {
   try {
@@ -74,6 +96,9 @@ router.get("/friends/:userId", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
+////Not sure about this...
 
 //follow a user
 

@@ -1,0 +1,1 @@
+./apache-activemq-5.16.4\bin\activemq.bat start

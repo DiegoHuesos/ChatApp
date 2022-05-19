@@ -7,7 +7,6 @@ const morgan = require("morgan");
 const multer = require("multer");
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
-const postRoute = require("./routes/posts");
 const conversationRoute = require("./routes/conversations");
 const messageRoute = require("./routes/messages");
 const router = express.Router();
@@ -32,6 +31,8 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
+
+//To upload images
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/images");
@@ -42,6 +43,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
 app.post("/api/upload", upload.single("file"), (req, res) => {
   try {
     return res.status(200).json("File uploded successfully");
@@ -49,10 +51,10 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
     console.error(error);
   }
 });
+//////
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
-app.use("/api/posts", postRoute);
 app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);
 

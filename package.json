@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "config": "^3.3.7"
+    "config": "^3.3.7",
+    "stompit": "^1.0.0"
   }
 }
